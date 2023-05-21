@@ -8,8 +8,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import time
 
-DRIVER_PATH = './chromedriver.exe'
-path = 'http://127.0.0.1:3001/votes/browser'
+DRIVER_PATH = './chromedriver-simple.exe'
+path = 'http://127.0.0.1:3000/votes/browser'
 
 options = Options()
 # options.headless = True
@@ -21,7 +21,7 @@ options = Options()
 
 
 service = Service(executable_path=DRIVER_PATH)
-driver = webdriver.Chrome(service=service, options=options)
+driver = webdriver.Chrome(options=options, service=service)
 # driver = webdriver.Chrome(options=options, dri)
 # driver = uc.Chrome(version_main = 112)
 # driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
