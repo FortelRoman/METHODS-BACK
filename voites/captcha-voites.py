@@ -1,8 +1,7 @@
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
-from selenium.webdriver.edge.options import Options
+from selenium.webdriver.chrome.options import Options
 import time
 
 settings = {
@@ -14,13 +13,12 @@ settings = {
 }
 
 
-DRIVER_PATH = './msedgedriver.exe'
-path = 'http://127.0.0.1:3000/'
+DRIVER_PATH = './chromedriver-simple.exe'
+path = 'http://127.0.0.1:3000/votes/captcha'
 
 options = Options()
-# options.headless = True
-options.add_argument("--window-size=1920,1200")
-driver = webdriver.Edge(options=options, executable_path=DRIVER_PATH)
+service = Service(executable_path=DRIVER_PATH)
+driver = webdriver.Chrome(options=options, service=service)
 driver.get(path)
 
 for key, value in settings.items():
@@ -43,6 +41,6 @@ time.sleep(2)
 check = driver.find_element(By.CLASS_NAME, 'recaptcha-checkbox')
 check.click()
 
-time.sleep(30)
+time.sleep(30000)
 
 driver.quit()
